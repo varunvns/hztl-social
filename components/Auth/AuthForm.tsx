@@ -22,15 +22,16 @@ const AuthForm: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-
+  
   function switchAuthModeHandler() {
     setIsLogin((prevState) => !prevState);
+    
   }
 
   async function submitHandler(event: React.FormEvent) {
     event.preventDefault();
     console.log("Inside submit");
-    if (isLogin) {
+     if (isLogin) {
     } else {
       try {
         const resp = await createUser(
@@ -38,10 +39,28 @@ const AuthForm: React.FC = () => {
           passwordRef.current!.value
         );
         console.log(resp);
+
+      //   const response = await fetch("/api/auth/sendemail/", {
+      //     body: JSON.stringify({
+      //       email: emailRef.current!.value,
+      //     }),
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     method: "POST",
+      //   });
+      //   const data = await response.json();
+      // console.log(data);
+      // if (!response.ok) {
+      //   throw new Error(data.message || "Something went wrong");
+      // }
+      // return data;
       } catch (error) {
         console.log(error);
       }
     }
+    
+   
   }
 
   return (
