@@ -25,15 +25,22 @@ export default ({...props}) => {
 
     const handleSubmit = useCallback( async (e) => {
         e.preventDefault();
-        const url = 'https//localhost:3000';
-        let response = await Axios({
-                method : 'post',
-                url : url + `comments`,
-                data : fields
-            }
-        );
-        console.log(response);
- }, [])
+        // const url = 'https//localhost:3000';
+        // let response = await Axios({
+        //         method : 'post',
+        //         url : url + `comments`,
+        //         data : fields
+        //     }
+        // );
+
+       await fetch('https://api.github.com/orgs/axios')
+            .then(res => res.json())    // one extra step
+            .then(data => {
+                console.log(data) ;
+            })
+            .catch(error => console.error(error));
+       
+    }, [])
 
     return (
             <Fragment>
