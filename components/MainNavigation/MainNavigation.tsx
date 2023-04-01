@@ -1,14 +1,17 @@
 import Link from "next/link";
 import classes from "./MainNavigation.module.css";
 import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/router";
 
 const MainNavigation: React.FC = () => {
   const { data: session } = useSession();
+  const router = useRouter();
   console.log(session);
   function logoutHandler() {
     signOut({
       redirect: false,
     });
+    router.replace("/");
   }
   return (
     <header className={classes.header}>
