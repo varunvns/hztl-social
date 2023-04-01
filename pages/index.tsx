@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 //mport styles from '@/styles/Home.module.css'
 import StartingPageContent from "@/components/StartingPage/StartingPage";
+import ShoutOut from "@/components/Comment/ShoutOut";
 import SectionCounter from "@/components/SectionCounter/SectionCounter";
 import Testimonials from "@/components/Testimonials/Testimonials";
 import BodyEnd from "@/components/BodyEnd/BodyEnd";
