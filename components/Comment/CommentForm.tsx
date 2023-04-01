@@ -8,7 +8,7 @@ const  CommentForm = ({...props}) => {
         content : '',
         post : props.post_id //getting this from the main component
     }
-    const fieldChangeHandler = (e)=>{
+    const fieldChangeHandler = (e: any)=>{
         switch(e.target.name){
             case 'commenter-name':
                 fields.author_name = e.target.value;
@@ -22,7 +22,7 @@ const  CommentForm = ({...props}) => {
         }
     }
 
-    const handleSubmit = useCallback( async (e) => {
+    const handleSubmit = useCallback( (e : React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         // const url = 'https//localhost:3000';
         // let response = await Axios({
@@ -32,7 +32,7 @@ const  CommentForm = ({...props}) => {
         //     }
         // );
 
-       await fetch('https://api.github.com/orgs/axios')
+        fetch('https://api.github.com/orgs/axios')
             .then(res => res.json())    // one extra step
             .then(data => {
                 console.log(data) ;
