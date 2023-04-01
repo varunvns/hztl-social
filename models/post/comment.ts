@@ -9,10 +9,14 @@ export type CommentsListPropsModel = {
     comments: Array<CommentModel>;
 }
 
-export type CommentResponseModel = {
-    id: number;
-    commentreceiverid:number;
-    commentauthorid:number;
-    DateTime: string;   
-    comment: string;
+export type SaveCommentModel = {
+    id: number,
+    commentreceiverid:number,
+    commentauthorid:number,
+    DateTime: string, 
+    comment: string  
+}
+
+export type SaveCommentResponseModel = {
+    message: string
 }
