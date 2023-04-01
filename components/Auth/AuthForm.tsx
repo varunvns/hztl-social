@@ -1,7 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import classes from "./AuthForm.module.css";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
+import NotificationContext from "@/store/notification-context";
 
 async function createUser(email: string, password: string) {
   const response = await fetch("/api/auth/signup", {
@@ -25,6 +26,7 @@ const AuthForm: React.FC = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+  const notificationContext = useContext(NotificationContext);
 
   function switchAuthModeHandler() {
     setIsLogin((prevState) => !prevState);
@@ -45,13 +47,29 @@ const AuthForm: React.FC = () => {
       }
     } else {
       try {
+        notificationContext.showNotification({
+          title: "Signing up",
+          message: "Registering for HZTL Social...",
+          status: "pending",
+        });
         const resp = await createUser(
           emailRef.current!.value,
           passwordRef.current!.value
         );
         console.log(resp);
-      } catch (error) {
+        notificationContext.showNotification({
+          title: "Registered Successfully",
+          message: resp.message,
+          status: "success",
+        });
+        setIsLogin((prevState) => !prevState);
+      } catch (error: any) {
         console.log(error);
+        notificationContext.showNotification({
+          title: "Error while Registration",
+          message: error.message,
+          status: "success",
+        });
       }
     }
   }
