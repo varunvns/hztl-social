@@ -23,8 +23,7 @@ async function handler(
   const db = client.db();
   //Make dynamic
  
-  let count = (await db.collection("comments").find({}).toArray()).length + 1;
-  console.log('count is:'+ count);
+  
   const existingUser = await db.collection("employees").findOne({ id: commentauthorid });
   if (!existingUser) {
     res.status(422).json({ message: "User does not exist" });
@@ -32,7 +31,6 @@ async function handler(
     return;
   }
   const result = await db.collection("comments").insertOne({
-    id:count,
     commentreceiverid:commentreceiverid,
     commentauthorid:commentauthorid,
     DateTime: Date.now(), 

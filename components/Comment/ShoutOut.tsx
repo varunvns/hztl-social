@@ -19,8 +19,8 @@ function ShoutOut({ ...props }) {
       {/* 
       <CommentForm post_id={props.post.id}/> 
        remove it later */} 
-      {/* <CommentList comments={props.comments} />     
-      <CommentForm post_id={props.post}/>  */}
+      {/* <CommentList comments={props.comments} />      */}
+      <CommentForm /> 
     </>
   );
 }

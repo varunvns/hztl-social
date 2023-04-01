@@ -18,7 +18,7 @@ const MainNavigation: React.FC = () => {
             <Link href="/profile">Profile</Link>
           </li>
           <li>
-            <Link href="/Shoutouts">Shoutouts</Link>
+            <Link href="/shoutout">Shoutouts</Link>
           </li>
           <li>
             <button>Logout</button>
