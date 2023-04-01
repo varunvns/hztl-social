@@ -1,9 +1,29 @@
-import React from 'react'
+import Link from "next/link";
+import classes from "./MainNavigation.module.css";
 
-function MainNavigation() {
+const MainNavigation: React.FC = () => {
   return (
-    <div>MainNavigation</div>
-  )
-}
+    <header className={classes.header}>
+      <Link href="/" legacyBehavior>
+        <a>
+          <div className={classes.logo}>Next Auth</div>
+        </a>
+      </Link>
+      <nav>
+        <ul>
+          <li>
+            <Link href="/auth">Login</Link>
+          </li>
+          <li>
+            <Link href="/profile">Profile</Link>
+          </li>
+          <li>
+            <button>Logout</button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  );
+};
 
-export default MainNavigation
+export default MainNavigation;
