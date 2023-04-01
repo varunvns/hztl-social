@@ -3,16 +3,20 @@ import { AuthOptions } from "next-auth/core/types";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { connectToDatabase } from "@/lib/db";
 import { verifyPassword } from "@/lib/auth";
-import {CredentialModel} from "@/models/oauth/signup";
+import { CredentialModel } from "@/models/oauth/signup";
 
 export const authOptions: AuthOptions = {
+  secret: process.env.AUTH_SECRET,
+  session: {
+    strategy: "jwt",
+  },
   providers: [
     CredentialsProvider({
       type: "credentials",
       credentials: {},
       async authorize(credentials, req) {
         console.log(credentials);
-        const {email, password} = credentials as CredentialModel;
+        const { email, password } = credentials as CredentialModel;
         const client = await connectToDatabase();
         const db = client.db();
         const user = await db.collection("users").findOne({ email: email });
