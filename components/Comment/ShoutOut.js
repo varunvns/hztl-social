@@ -1,4 +1,6 @@
 import React, { Fragment } from 'react';
+import CommentForm from '../Comment/CommentForm';
+import CommentList from '../Comment/CommentList';
 
 function ShoutOut({ ...props }) {
   return (
@@ -14,6 +16,10 @@ function ShoutOut({ ...props }) {
           )}
         </div>
       </div>
+      {/* <CommentList comments={props.comments} />
+      <CommentForm post_id={props.post.id}/> 
+       remove it later */}      
+      <CommentForm post_id='test'/> 
     </Fragment>
   );
 }

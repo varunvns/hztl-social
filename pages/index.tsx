@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <StartingPageContent></StartingPageContent>
-      <ShoutOut />
+      <ShoutOut/>
     </>
   );
 }
