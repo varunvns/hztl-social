@@ -2,7 +2,7 @@ import { connectToDatabase } from "@/lib/db";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { SignupResponse } from "@/models/oauth/signup";
 import { encryptPassword } from "@/lib/auth";
-
+import sendemail from "@/pages/api/auth/sendemail";
 async function handler(
   req: NextApiRequest,
   res: NextApiResponse<SignupResponse>
@@ -38,5 +38,6 @@ async function handler(
   console.log(result);
   res.status(201).json({ message: "Created User" });
   client.close();
+  sendemail(email);
 }
 export default handler;
