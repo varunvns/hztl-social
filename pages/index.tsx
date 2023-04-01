@@ -10,6 +10,10 @@ export default function Home() {
   return (
     <>
       <StartingPageContent></StartingPageContent>
+<<<<<<< HEAD
+=======
+      
+>>>>>>> f6b70e1fe04aade04e9ef0ffb604a7b5fa518d80
     </>
   );
 }
