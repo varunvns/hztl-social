@@ -1,43 +1,37 @@
-<<<<<<< HEAD
-.form {
-  display: table;
-}
-=======
 .commentform {
-    margin: 3rem auto;
-    text-align: center;
-  }
-  .forms {
-    width: 95%;
-    max-width: 25rem;
-    margin: 2rem auto;
-  }
-  .inputfield {
-    display: block;
-    font: inherit;
-    width: 100%;
-    border-radius: 4px;
-    border: 1px solid #38015C;
-    padding: 0.25rem;
-    background-color: #F7F0FA;
-  }
-  .text {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  .primarybutton {
-    width: 100%;
-    background-color: grey;
-    color: #38015C;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
->>>>>>> f6b70e1fe04aade04e9ef0ffb604a7b5fa518d80
+  margin: 3rem auto;
+  text-align: center;
+}
+.forms {
+  width: 95%;
+  max-width: 25rem;
+  margin: 2rem auto;
+}
+.inputfield {
+  display: block;
+  font: inherit;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #38015C;
+  padding: 0.25rem;
+  background-color: #F7F0FA;
+}
+.text {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.primarybutton {
+  width: 100%;
+  background-color: grey;
+  color: #38015C;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
