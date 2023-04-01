@@ -22,17 +22,21 @@ async function handler(
   const client = await connectToDatabase();
   const db = client.db();
   //Make dynamic
-  const existingUser = await db.collection("employees").findOne({ id: 1 });
-  if (existingUser) {
-    res.status(422).json({ message: "User exists" });
+ 
+  let count = (await db.collection("comments").find({}).toArray()).length + 1;
+  console.log('count is:'+ count);
+  const existingUser = await db.collection("employees").findOne({ id: commentauthorid });
+  if (!existingUser) {
+    res.status(422).json({ message: "User does not exist" });
     client.close();
     return;
   }
   const result = await db.collection("comments").insertOne({
-    commentreceiverid:2,
-    commentauthorid:1,
+    id:count,
+    commentreceiverid:commentreceiverid,
+    commentauthorid:commentauthorid,
     DateTime: Date.now(), 
-    comment: 'Comment from VS code'  
+    comment: comment  
   });
   console.log(result);
   res.status(201).json({ message: "Saved comment to mongodb" });
