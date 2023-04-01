@@ -1,4 +1,4 @@
-import { Fragment, useCallback } from 'react'
+import { useCallback } from 'react';
 
 const  CommentForm = ({...props}) => {
 
@@ -8,7 +8,7 @@ const  CommentForm = ({...props}) => {
         content : '',
         post : props.post_id //getting this from the main component
     }
-    const fieldChangeHandler = (e: any)=>{
+    const fieldChangeHandler = (e : any)=>{
         switch(e.target.name){
             case 'commenter-name':
                 fields.author_name = e.target.value;
@@ -22,15 +22,8 @@ const  CommentForm = ({...props}) => {
         }
     }
 
-    const handleSubmit = useCallback( (e : React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = useCallback( (e : React.FormEvent) => {
         e.preventDefault();
-        // const url = 'https//localhost:3000';
-        // let response = await Axios({
-        //         method : 'post',
-        //         url : url + `comments`,
-        //         data : fields
-        //     }
-        // );
 
         fetch('https://api.github.com/orgs/axios')
             .then(res => res.json())    // one extra step
@@ -42,7 +35,7 @@ const  CommentForm = ({...props}) => {
     }, [])
 
     return (
-            <Fragment>
+            <>
             <h2>Add a Comment</h2>
             <form onSubmit={handleSubmit}>
                 <input onChange={fieldChangeHandler} type="text" name="commenter-name"/>
@@ -50,7 +43,7 @@ const  CommentForm = ({...props}) => {
                 <textarea onChange={fieldChangeHandler} name="commenter-message"></textarea>
                 <button type="submit" className="primary">Submit</button>
             </form>
-            </Fragment>
+            </>
         )
     }
 

@@ -24,8 +24,9 @@ export async function getServerSideProps(context) {
     return output;
   }
 
-  const comments = await Axios.get(url + `comments?post=${ post.id }`);
-  return output.props.comments = comments.data.length > 0 ? comments.data : null;
+  const comments = await fetch(url + `comments?post=${ post.id }`);
+  const commentsData = await comments.json();
+  return output.props.comments = commentsData.length > 0 ? commentsData : null;
 
   //return output;
 }
