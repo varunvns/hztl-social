@@ -1,4 +1,4 @@
-export default ({ ...props}) => {
+const CommentList = ({ ...props}) => {
     let numComments = props.comments !== null ? props.comments.length : 0;
     return (
         <div className="comments col-6 col-12-small">
@@ -11,9 +11,8 @@ export default ({ ...props}) => {
                         <div key={comment.id} className="comment">
                             <img className="comment-avatar" src={comment.author_avatar_urls[48]} />
                             <h4 className="comment-author-name">{comment.author_name}</h4>
-                            <div className="comment-content"
-                                    key={comment.id}
-                                    dangerouslySetInnerHTML={ { __html : comment.content.rendered } }>
+                            <div className="comment-content" key={comment.id}>
+                            <p>{{ __html : comment.content.rendered }}</p>
                             </div>
                         </div>
                     )
@@ -22,3 +21,5 @@ export default ({ ...props}) => {
         </div>
     )
 }
+
+export default CommentList;

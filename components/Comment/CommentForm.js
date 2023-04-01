@@ -1,7 +1,7 @@
 import { Fragment, useCallback } from 'react'
 import Axios from 'axios'
 
-export default ({...props}) => {
+const  CommentForm = ({...props}) => {
 
     let fields = {
         author_name : '',
@@ -54,3 +54,5 @@ export default ({...props}) => {
             </Fragment>
         )
     }
+
+    export default CommentForm;
