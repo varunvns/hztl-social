@@ -4,8 +4,9 @@ import MessageContext from "../CommentFormSuccess/CommentSuccesMessageContext";
 function Messages(props) {
     const messageContext = useContext(MessageContext);
 
-    function MessageSteps(messageData) {
+    function addCommentHandler(commentData) {
         messageContext.showMessage({
+        title: 'Adding your Comment',
         message: 'Your comment is currently being stored',
         status: 'pending'
       });
@@ -24,11 +25,18 @@ function Messages(props) {
         .then((data) => {
           console.log(data);
           messageContext.showMessage({
-            title: 'Success',
+            title: 'SUCCESS',
             message: 'Your comment was saved',
             status: 'success'
           });
         })
+        .catch((error)=>{
+            notificationContext.showMessage({
+              title: 'ERROR',
+              message: 'Something went wrong',
+              status: 'error'
+            });
+          });
     }
   }
   

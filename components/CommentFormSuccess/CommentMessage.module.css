@@ -1,0 +1,25 @@
+.message {
+    position: fixed;
+    height: 5rem;
+    width: 100%;
+    background-color: black;
+    align-items: center;
+    color: whitesmoke;
+  }
+  
+  .notification h2 {
+    color: white;
+  }
+  
+  .pending {
+    background-color: rgb(241, 241, 18);
+  }
+  
+  .success {
+    background-color: #08da5f;
+  }
+  
+  .error {
+    background-color: #ee4021;
+  }
+  
