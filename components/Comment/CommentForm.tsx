@@ -1,6 +1,7 @@
 // import { useCallback } from 'react';
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import classes from './CommentForm.module.css';
+import NotificationContext from "@/store/notification-context";
 
 async function createComment(comment: string) {
     let commentreceiverid =2;
@@ -25,17 +26,33 @@ const  CommentForm: React.FC = () => {
 
     // const commenterNameRef = useRef<HTMLInputElement>(null);
     // const commenterEmailRef = useRef<HTMLInputElement>(null);
+    const notificationContext = useContext(NotificationContext);
     const messageRef = useRef<HTMLTextAreaElement>(null);
     async function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
         console.log("Inside comment submit");
           try {
+            notificationContext.showNotification({
+              title: "Submitting Comment",
+              message: "Submitting your comment on HZTL Social...",
+              status: "pending",
+            });
             const resp = await createComment(
                 messageRef.current!.value
             );
             console.log(resp);
-          } catch (error) {
+            notificationContext.showNotification({
+              title: "Comment submitted Successfully.",
+              message: resp.message,
+              status: "success",
+            });
+          } catch (error: any) {
             console.log(error);
+            notificationContext.showNotification({
+              title: "Error while Submitting Comment",
+              message: error.message,
+              status: "error",
+            });
           }
         
     }
