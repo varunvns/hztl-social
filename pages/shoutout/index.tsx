@@ -26,7 +26,7 @@ export const getServerSideProps: GetServerSideProps<{
   console.log("Chira");
   console.log(sessionData);
   var userList = await fetch(
-    "https://hztl-social-varunvns.vercel.app/api/shoutout/fetchUser",
+    "https://hztl-social.vercel.app/api/shoutout/fetchUser",
     {
       method: "GET",
     }

@@ -30,6 +30,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   console.log(commentauthorid);
   const commentResult = await commentCollection
     .find({ commentauthorid: commentauthorid })
+    .sort({DateTime:-1})
     .toArray();
   console.log(commentResult);
   
