@@ -34,7 +34,8 @@ async function handler(
       id: value._id.toString(),
       email: value.email,
       comment: commentcount,
-      imageurl: value.imageurl
+      imageurl: value.imageurl,
+      name: value.fullname
     });
   }
 

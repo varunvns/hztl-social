@@ -4,10 +4,10 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import NotificationContext from "@/store/notification-context";
 
-async function createUser(email: string, password: string) {
+async function createUser(email: string, password: string, fullname: string) {
   const response = await fetch("/api/auth/signup", {
     method: "POST",
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ email, password, fullname }),
     headers: {
       "Content-Type": "application/json",
     },
@@ -24,6 +24,7 @@ async function createUser(email: string, password: string) {
 const AuthForm: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
   const emailRef = useRef<HTMLInputElement>(null);
+  const fullNameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const notificationContext = useContext(NotificationContext);
@@ -54,7 +55,8 @@ const AuthForm: React.FC = () => {
         });
         const resp = await createUser(
           emailRef.current!.value,
-          passwordRef.current!.value
+          passwordRef.current!.value,
+          fullNameRef.current!.value
         );
         console.log(resp);
         notificationContext.showNotification({
@@ -98,6 +100,22 @@ const AuthForm: React.FC = () => {
                     ref={emailRef}
                   />
                 </div>
+                {!isLogin && (
+                  <div className="form-group">
+                    <label className="label" htmlFor="fullname">
+                      Full Name
+                    </label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      id="fullname"
+                      placeholder="Full Name"
+                      required
+                      ref={fullNameRef}
+                    />
+                  </div>
+                )}
+
                 <div className="form-group">
                   <label className="label" htmlFor="password">
                     Password

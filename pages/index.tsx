@@ -13,16 +13,36 @@ import AuthForm from "@/components/Auth/AuthForm";
 
 import { banner } from "@/models/marketing/banner";
 
+import { getServerSession } from "next-auth/next";
+import { UserShoutOutListObject } from "@/models/shoutout/user";
+import { GetServerSideProps } from "next";
+import { authOptions } from "./api/auth/[...nextauth]";
+import { SessionData } from "@/models/oauth/signup";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { getSession } from "next-auth/react";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home(props: { data: UserShoutOutListObject }) {
   console.log(props);
+  const router = useRouter();
+  const [notLoggedInSession, SetNotLoggedInSession] = useState(true);
+  useEffect(() => {
+    getSession().then((session) => {
+      if (session) {
+        SetNotLoggedInSession(false);
+      } else {
+        SetNotLoggedInSession(true);
+      }
+    });
+  }, []);
   return (
     <>
       {/* <StartingPageContent /> */}
       <Banner {...banner} />
-      <AuthForm />
-      <MainPromo />
+      {notLoggedInSession && <AuthForm />}
+      <MainPromo shoutoutList={props.data.shoutList} />
       <SectionCounter />
       <Testimonials />
       <BodyEnd />
@@ -35,8 +55,6 @@ export const getServerSideProps: GetServerSideProps<{
 }> = async (context) => {
   const session = await getServerSession(context.req, context.res, authOptions);
   const sessionData: SessionData = session;
-  console.log("Chira");
-  console.log(sessionData);
   var userList = await fetch("http://localhost:3000/api/user/usercomments", {
     method: "GET",
   });
