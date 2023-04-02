@@ -36,11 +36,6 @@ const MainNavigation: React.FC = () => {
         </button>
         <div className="collapse navbar-collapse" id="ftco-nav">
           <ul className="navbar-nav ml-auto">
-            {!session && (
-              <li className="nav-item">
-                <Link href="/auth">Login</Link>
-              </li>
-            )}
             {session && (
               <li className="nav-item">
                 <Link href="/profile">Profile</Link>

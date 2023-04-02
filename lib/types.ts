@@ -1,4 +1,5 @@
 import { Interface } from "readline";
+import { UserShoutOut } from "@/models/shoutout/user";
 
 export interface ISocialIcon {
   id: number;
@@ -97,7 +98,7 @@ export interface IPromo {
   maindescription: string;
   mainlink: string;
   mainlinktitle: string;
-  items: Array<IPromoCard>;
+  items: Array<UserShoutOut>;
 }
 
 export class Promo implements IPromo {
@@ -106,7 +107,7 @@ export class Promo implements IPromo {
     public maindescription: string,
     public mainlink: string,
     public mainlinktitle: string,
-    public items: Array<IPromoCard>
+    public items: Array<UserShoutOut>
   ) {}
 }
 

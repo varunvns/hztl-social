@@ -1,4 +1,6 @@
 import { IPromo, IPromoCard } from "@/lib/types";
+import { UserShoutOut } from "@/models/shoutout/user";
+import Link from "next/link";
 
 const PromoCard = ({ maintitle, maindescription, mainlink, items }: IPromo) => {
   return (
@@ -10,24 +12,23 @@ const PromoCard = ({ maintitle, maindescription, mainlink, items }: IPromo) => {
         </div>
       </div>
       <div className="row justify-content-center">
-        {items.map((promocard: IPromoCard) => (
+        {items.map((promocard: UserShoutOut) => (
           <div key={promocard.id} className="col-md-3 col-lg-2">
             <a
-              href={promocard.link}
               className="course-category img d-flex align-items-center justify-content-center"
-              style={{ backgroundImage: `url(${promocard.image})` }}
+              style={{ backgroundImage: `url(${promocard.imageurl})` }}
             >
               <div className="text w-100 text-center">
-                <h3>{promocard.title}</h3>
-                <span>{promocard.text}</span>
+                <h3>{promocard.name}</h3>
+                <span>Total shoutouts:{promocard.comment}</span>
               </div>
             </a>
           </div>
         ))}
         <div className="col-md-12 text-center mt-5">
-          <a href={mainlink} className="btn btn-secondary">
-            See All Courses
-          </a>
+          <Link href="/shoutout" legacyBehavior>
+            <a className="btn btn-secondary">See All User</a>
+          </Link>
         </div>
       </div>
     </>

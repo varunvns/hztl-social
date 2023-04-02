@@ -2,6 +2,7 @@
 import { useState, useRef, useContext } from "react";
 import classes from "./CommentForm.module.css";
 import NotificationContext from "@/store/notification-context";
+import { useRouter } from "next/router";
 
 type CommentFormProps = {
   commentReceiverID: string | string[] | undefined;
@@ -28,6 +29,7 @@ async function createComment(commentreceiverid: string, comment: string) {
 const CommentForm: React.FC<CommentFormProps> = (props) => {
   const notificationContext = useContext(NotificationContext);
   const messageRef = useRef<HTMLTextAreaElement>(null);
+  const router = useRouter();
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     console.log("Inside comment submit");
@@ -47,6 +49,7 @@ const CommentForm: React.FC<CommentFormProps> = (props) => {
         message: resp.message,
         status: "success",
       });
+      router.replace("/shoutout");
     } catch (error: any) {
       console.log(error);
       notificationContext.showNotification({

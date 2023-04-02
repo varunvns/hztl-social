@@ -1,11 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { SignupResponse } from "@/models/oauth/signup";
 import { connectToDatabase } from "@/lib/db";
 import {
   UserShoutOut,
   UserShoutOutList,
   UserShoutOutListObject,
 } from "@/models/shoutout/user";
+
 async function handler(
   req: NextApiRequest,
   res: NextApiResponse<UserShoutOutList>
@@ -13,23 +13,31 @@ async function handler(
   if (req.method !== "GET") {
     return;
   }
-
   const client = await connectToDatabase();
 
   const db = client.db();
-  const userCollection = db.collection("users");
-  const userResult = await userCollection.find({}).toArray();
+  const userCollection = await db
+    .collection("users")
+    .find({})
+    .limit(6)
+    .toArray();
 
   var result = new UserShoutOutListObject([]);
-  userResult.forEach(function (value) {
+  for (const value of userCollection) {
+    var commentcount = await db
+      .collection("comments")
+      .find({ commentreceiverid: value._id.toString() })
+      .count();
+    console.log("Comment Count");
+    console.log(commentcount);
     result.addShoutOut({
       id: value._id.toString(),
       email: value.email,
-      comment: 0,
+      comment: commentcount,
       imageurl: value.imageurl,
       name: value.fullname
     });
-  });
+  }
 
   res.status(201).json(result);
   client.close();

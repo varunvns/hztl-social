@@ -1,6 +1,19 @@
 .carditem{
     flex: 0 1 33.33%;
     min-height: 100px;
+    margin-bottom: 25px;
+}
+.cardImage{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    z-index: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 .cardtext{
     display: block;
