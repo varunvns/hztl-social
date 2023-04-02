@@ -1,5 +1,6 @@
 import React from "react";
 import { banner } from "@/models/marketing/banner";
+import Link from "next/link";
 const Banner = () => {
   return (
     <>
@@ -18,12 +19,12 @@ const Banner = () => {
               <h1 className="mb-4">{banner.bannerSubTitle}</h1>
               <p className="caps">{banner.bannerDescription}</p>
               <p className="mb-0">
-                <a href={banner.bannerPrimaryLink} className="btn btn-primary">
-                  {banner.bannerPrimaryText}
-                </a>
-                <a href={banner.bannerSecondaryLink} className="btn btn-white">
-                  {banner.bannerSecondaryText}
-                </a>
+                <Link legacyBehavior href={banner.bannerPrimaryLink}>
+                  <a className="btn btn-primary">{banner.bannerPrimaryText}</a>
+                </Link>
+                <Link legacyBehavior href={banner.bannerSecondaryLink}>
+                  <a className="btn btn-white">{banner.bannerSecondaryText}</a>
+                </Link>
               </p>
             </div>
           </div>

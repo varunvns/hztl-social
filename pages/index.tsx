@@ -46,7 +46,7 @@ export default function Home(props: { allComments: UserCommentListObject }) {
   
   return (
     <>
-      <StartingPageContent />
+      {/* <StartingPageContent /> */}
       <Banner />
       <MainPromo />
       <SectionCounter />
