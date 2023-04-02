@@ -1,0 +1,7 @@
+.carditem{
+    flex: 0 1 33.33%;
+    min-height: 100px;
+}
+.cardtext{
+    display: block;
+}
