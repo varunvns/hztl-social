@@ -3,7 +3,7 @@ import { Testimonial } from "@/lib/types";
 const testimonial = new Testimonial(
   "Testimonial",
   "What Are Students Saying",
-  "",
+  "'/Theme/images/bg_2.jpg'",
   [
     {
       id: 1,
@@ -12,7 +12,7 @@ const testimonial = new Testimonial(
         "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
       testimonial_author: "Roger Scott",
       author_role: "Marketing Manager",
-      author_image: "../../public/Theme/images/person_1.jpg",
+      author_image: "/Theme/images/person_1.jpg",
     },
     {
       id: 2,
@@ -21,7 +21,7 @@ const testimonial = new Testimonial(
         "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
       testimonial_author: "Roger Scott",
       author_role: "Marketing Manager",
-      author_image: "../../public/Theme/images/person_2.jpg",
+      author_image: "/Theme/images/person_2.jpg",
     },
     {
       id: 3,
@@ -30,7 +30,7 @@ const testimonial = new Testimonial(
         "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
       testimonial_author: "Roger Scott",
       author_role: "Marketing Manager",
-      author_image: "../../public/Theme/images/person_3.jpg",
+      author_image: "/Theme/images/person_3.jpg",
     },
     {
       id: 4,
@@ -39,7 +39,7 @@ const testimonial = new Testimonial(
         "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
       testimonial_author: "Roger Scott",
       author_role: "Marketing Manager",
-      author_image: "../../public/Theme/images/person_4.jpg",
+      author_image: "/Theme/images/person_4.jpg",
     },
     {
       id: 5,
@@ -48,7 +48,7 @@ const testimonial = new Testimonial(
         "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
       testimonial_author: "Roger Scott",
       author_role: "Marketing Manager",
-      author_image: "../../public/Theme/images/person_1.jpg",
+      author_image: "/Theme/images/person_1.jpg",
     },
   ]
 );
