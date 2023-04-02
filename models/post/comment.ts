@@ -17,6 +17,10 @@ export type SaveCommentModel = {
     comment: string  
 }
 
+export type SaveCommentModelList = {
+    comments: Array<SaveCommentModel>;
+}
+
 export type SaveCommentResponseModel = {
     message: string
 }

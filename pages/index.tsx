@@ -9,16 +9,48 @@ import Testimonials from "@/components/Testimonials/Testimonials";
 import BodyEnd from "@/components/BodyEnd/BodyEnd";
 import MainPromo from "@/components/WelcomePromo/MainPromo";
 import Banner from "@/components/Banner/Banner";
+import UserCommentListComp from "@/components/Card/UserCommentListComp";
+import { GetStaticProps ,InferGetStaticPropsType } from 'next';
+import {SaveCommentModel,SaveCommentModelList} from '../models/post/comment';
+import { UserCommentListObject } from "@/models/post/usercomment";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+
+function UserCommentList(props: { data: UserCommentListObject }) {
+  console.log(props);
+  return (
+    <>
+      <h1>User Comments from home page</h1>
+      <UserCommentListComp userCommentList={props.data.userCommentList}></UserCommentListComp>
+    </>
+  );
+}
+
+export const getStaticProps: GetStaticProps<{ allComments: UserCommentListObject }> = async (context) => {
+  console.log("GetStaticProps");
+  const res = await fetch('http://localhost:3000/api/post/getAllComments');
+  console.log(res);
+  const allComments: UserCommentListObject = await res.json();
+  console.log(allComments.userCommentList);
+
+ 
+  return {
+    props: {
+      allComments,
+    },
+  }
+};
+
+export default function Home(props: { allComments: UserCommentListObject }) {
+  
   return (
     <>
       <StartingPageContent />
       <Banner />
       <MainPromo />
       <SectionCounter />
+      <UserCommentList data={props.allComments} />
       <Testimonials />
       <BodyEnd />
     </>
