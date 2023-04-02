@@ -4,6 +4,9 @@ import {
   UserCommentList,
   UserCommentListObject,
 } from "@/models/post/usercomment";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { getServerSession } from "next-auth/next";
+
 async function handler(
   req: NextApiRequest,
   res: NextApiResponse<UserCommentList>
@@ -11,21 +14,36 @@ async function handler(
   if (req.method !== "GET") {
     return;
   }
-
+  const session = await getServerSession(req, res, authOptions);
+  console.log(session);
+  if (!session) {
+    res.status(401);
+    return;
+  }
+  
+  const userEmail = session.user!.email;
   const client = await connectToDatabase();
-
   const db = client.db();
-  const commentCollection = db.collection("comments");
-  const commentResult = await commentCollection.find({}).toArray();
 
+  const commentCollection = db.collection("comments");
+  const loggedInUser = await db
+  .collection("users")
+  .findOne({ email: userEmail });
+  let commentauthorid;
+  if (loggedInUser) {
+    commentauthorid = loggedInUser._id.toString();
+  }
+  const commentResult = await commentCollection.find({commentauthorid:commentauthorid }).toArray();
+
+  const user = await db.collection("users").findOne({ email: userEmail });
 
   var result = new UserCommentListObject([]);
   commentResult.forEach(function (value) {
     result.addUserComment({
-        email : value.email,
+        email :userEmail!,       
         id: value._id.toString(),
-        author_image:'https://dummyimage.com/200/ffffff/000000',
-        testimonial_author:'lorem ipsum',
+        author_image: user!.imageUrl,
+        testimonial_author : userEmail!,
         testimonial_text:value.comment      
     })
   })

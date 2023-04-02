@@ -10,7 +10,7 @@ import BodyEnd from "@/components/BodyEnd/BodyEnd";
 import MainPromo from "@/components/WelcomePromo/MainPromo";
 import Banner from "@/components/Banner/Banner";
 import UserCommentListComp from "@/components/Card/UserCommentListComp";
-import { GetStaticProps ,InferGetStaticPropsType } from 'next';
+import { GetServerSideProps ,InferGetStaticPropsType } from 'next';
 import {SaveCommentModel,SaveCommentModelList} from '../models/post/comment';
 import { UserCommentListObject } from "@/models/post/usercomment";
 
@@ -27,7 +27,9 @@ function UserCommentList(props: { data: UserCommentListObject }) {
   );
 }
 
-export const getStaticProps: GetStaticProps<{ allComments: UserCommentListObject }> = async (context) => {
+export const getServerSideProps: GetServerSideProps<{ 
+  allComments: UserCommentListObject ;
+}> = async (context) => {
   console.log("GetStaticProps");
   const res = await fetch('http://localhost:3000/api/post/getAllComments');
   console.log(res);
@@ -42,8 +44,8 @@ export const getStaticProps: GetStaticProps<{ allComments: UserCommentListObject
   }
 };
 
-export default function Home(props: { allComments: UserCommentListObject }) {
-  
+
+export default function Home(props :{allComments: UserCommentListObject}) {
   return (
     <>
       {/* <StartingPageContent /> */}
