@@ -1,3 +1,5 @@
+import { Interface } from "readline";
+
 export interface ICounter {
   id: number;
   icon: string;
@@ -85,5 +87,19 @@ export class Banner implements IBanner {
     public bannerPrimaryLink: string,
     public bannerSecondaryText: string,
     public bannerSecondaryLink: string
+  ) {}
+}
+
+export interface IHero {
+  breadcrumb: string;
+  title: string;
+  image: string;
+}
+
+export class Hero implements IHero {
+  constructor(
+    public breadcrumb: string,
+    public title: string,
+    public image: string
   ) {}
 }
