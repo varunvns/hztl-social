@@ -2,8 +2,18 @@ import React from "react";
 import Testimonial from "./TestimonialCard";
 import bgImage from "../../public/Theme/images/bg_4.jpg";
 import { testimonial } from "@/models/marketing/testimonial";
+import {
+  UserCommentListObject,
+  CustomHomePageModel,
+  UserComment,
+} from "@/models/post/usercomment";
 
-const Testimonials = () => {
+type TestimonialProps = {
+  items: Array<UserComment>;
+};
+
+const Testimonials: React.FC<TestimonialProps> = (props) => {
+  console.log(props);
   return (
     <>
       <section className="ftco-section testimony-section bg-light">
@@ -11,7 +21,7 @@ const Testimonials = () => {
           title={testimonial.title}
           subtext={testimonial.subtext}
           image={testimonial.image}
-          items={testimonial.items}
+          items={props.items}
         />
       </section>
     </>

@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   env: {
     AUTH_SECRET: "0B5z6BqhwTWnamUmvXWzNwD8hekotJms",
-    NEXTAUTH_URL: "https://hztl-social-varunvns.vercel.app",
+    NEXTAUTH_URL: "https://hztl-social.vercel.app",
   },
   images: {
     remotePatterns: [

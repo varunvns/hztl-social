@@ -1,5 +1,6 @@
 import { Interface } from "readline";
 import { UserShoutOut } from "@/models/shoutout/user";
+import { UserComment } from "@/models/post/usercomment";
 
 export interface ISocialIcon {
   id: number;
@@ -64,7 +65,7 @@ export interface ITestimonial {
   title: string;
   subtext: string;
   image: string;
-  items: Array<ITestimonialItem>;
+  items: Array<UserComment>;
 }
 
 export interface ITestimonialItem {
@@ -81,7 +82,7 @@ export class Testimonial implements ITestimonial {
     public title: string,
     public subtext: string,
     public image: string,
-    public items: Array<ITestimonialItem>
+    public items: Array<UserComment>
   ) {}
 }
 

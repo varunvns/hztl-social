@@ -1,4 +1,5 @@
 import { ITestimonial, ITestimonialItem } from "@/lib/types";
+import { UserComment } from "@/models/post/usercomment";
 
 const TestimonialData = ({ title, subtext, image, items }: ITestimonial) => {
   return (
@@ -19,7 +20,7 @@ const TestimonialData = ({ title, subtext, image, items }: ITestimonial) => {
         <div className="row ftco-animate">
           <div className="col-md-12">
             <div className="carousel-testimony owl-carousel">
-              {items.map((testimonial: ITestimonialItem) => (
+              {items.map((testimonial: UserComment) => (
                 <div key={testimonial.id} className="owl-item cloned">
                   {" "}
                   {/* style={{width: 292.5px; margin-right: 30px;}} */}
@@ -45,9 +46,6 @@ const TestimonialData = ({ title, subtext, image, items }: ITestimonial) => {
                             <p className="name">
                               {testimonial.testimonial_author}
                             </p>
-                            <span className="position">
-                              {testimonial.author_role}
-                            </span>
                           </div>
                         </div>
                       </div>
