@@ -1,12 +1,11 @@
 import { Promo } from "@/lib/types";
 
 const promo = new Promo(
-  "Start Learning Today",
-  "Browse Online Course Category",
+  "Horizontal Team",
+  "Browse the Team members on HZTL Social",
   "#",
   "See All Categories",
-  [
-  ]
+  []
 );
 
 export { promo };

@@ -62,24 +62,14 @@ export const getServerSideProps: GetServerSideProps<{
   data: CustomHomePageModel;
 }> = async (context) => {
   const session = await getServerSession(context.req, context.res, authOptions);
-  console.log("Debugging session");
-  console.log(session);
-  var userList = await fetch("http://localhost:3000/api/user/usercomments", {
-    method: "GET",
-  });
-  var userData: UserShoutOutListObject = await userList.json();
-
-  const res = await fetch("http://localhost:3000/api/post/getAllComments", {
-    method: "POST",
-    body: JSON.stringify({
-      email: session?.user?.email,
-    }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const commentData: UserCommentListObject = await res.json();
-  const data: CustomHomePageModel = [userData, commentData];
+  const sessionData: SessionData = session;
+  var userList = await fetch(
+    "https://hztl-social-varunvns.vercel.app/api/user/usercomments",
+    {
+      method: "GET",
+    }
+  );
+  var data: UserShoutOutListObject = await userList.json();
   return {
     props: {
       data,

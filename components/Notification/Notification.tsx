@@ -1,25 +1,25 @@
-import { useContext } from 'react';
+import { useContext } from "react";
 
-import classes from './notification.module.css';
+import classes from "./Notification.module.css";
 import NotificationContext from "@/store/notification-context";
-import {NotificationRequest} from "@/models/notification/notification"
+import { NotificationRequest } from "@/models/notification/notification";
 
 function Notification(props: NotificationRequest) {
   const notificationCtx = useContext(NotificationContext);
 
   const { title, message, status } = props;
 
-  let statusClasses = '';
+  let statusClasses = "";
 
-  if (status === 'success') {
+  if (status === "success") {
     statusClasses = classes.success;
   }
 
-  if (status === 'error') {
+  if (status === "error") {
     statusClasses = classes.error;
   }
 
-  if (status === 'pending') {
+  if (status === "pending") {
     statusClasses = classes.pending;
   }
 

@@ -1,7 +1,7 @@
 import ProfileForm from "./ProfileForm";
 import classes from "./UserProfile.module.css";
 import { getSession } from "next-auth/react";
-import { useState, useEffect, useContext} from "react";
+import { useState, useEffect, useContext } from "react";
 import { SessionData } from "@/models/oauth/signup";
 import { Session } from "next-auth";
 import { UserProfileProps, ChangePassword } from "@/models/oauth/signup";
@@ -38,7 +38,12 @@ const UserProfile: React.FC<UserProfileProps> = (props) => {
   }
   return (
     <section className={classes.profile}>
-      <h1>User Name is {session?.user?.name}</h1>
+      <div className="row">
+        <div className="col-md-7"></div>
+        <div className="col-md-5">
+          <h6>User Name is {session?.user?.name}</h6>
+        </div>
+      </div>
       <ProfileForm OnChangePassword={OnChangePasswordHandler} />
     </section>
   );

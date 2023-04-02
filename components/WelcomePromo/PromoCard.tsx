@@ -27,7 +27,7 @@ const PromoCard = ({ maintitle, maindescription, mainlink, items }: IPromo) => {
         ))}
         <div className="col-md-12 text-center mt-5">
           <Link href="/shoutout" legacyBehavior>
-            <a className="btn btn-secondary">See All User</a>
+            <a className="btn btn-secondary">See All Team mates</a>
           </Link>
         </div>
       </div>
