@@ -111,26 +111,26 @@ export class Promo implements IPromo {
 }
 
 export interface IBanner {
-  bannerTitle: string;
-  bannerSubTitle: string;
-  bannerImage: string;
-  bannerDescription: string;
-  bannerPrimaryText: string;
-  bannerPrimaryLink: string;
-  bannerSecondaryText: string;
-  bannerSecondaryLink: string;
+  title: string;
+  subtitle: string;
+  image: string;
+  description: string;
+  primarytext: string;
+  primarylink: string;
+  secondarytext: string;
+  secondarylink: string;
 }
 
 export class Banner implements IBanner {
   constructor(
-    public bannerTitle: string,
-    public bannerSubTitle: string,
-    public bannerImage: string,
-    public bannerDescription: string,
-    public bannerPrimaryText: string,
-    public bannerPrimaryLink: string,
-    public bannerSecondaryText: string,
-    public bannerSecondaryLink: string
+    public title: string,
+    public subtitle: string,
+    public image: string,
+    public description: string,
+    public primarytext: string,
+    public primarylink: string,
+    public secondarytext: string,
+    public secondarylink: string
   ) {}
 }
 

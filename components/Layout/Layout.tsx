@@ -3,6 +3,7 @@ import Head from "next/head";
 import MainNavigation from "@/components/MainNavigation/MainNavigation";
 import NotificationContext from "@/store/notification-context";
 import Notification from "../Notification/Notification";
+import BodyEnd from "../BodyEnd/BodyEnd";
 
 function Layout(props: any) {
   const notificationContext = useContext(NotificationContext);
