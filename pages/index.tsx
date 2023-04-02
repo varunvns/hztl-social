@@ -1,5 +1,4 @@
-import Head from "next/head";
-import Image from "next/image";
+
 import { Inter } from "next/font/google";
 //mport styles from '@/styles/Home.module.css'
 import StartingPageContent from "@/components/StartingPage/StartingPage";
@@ -21,10 +20,15 @@ import { SessionData } from "@/models/oauth/signup";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
+import UserCommentListComp from "@/components/Card/UserCommentListComp";
+import { InferGetStaticPropsType } from 'next';
+import {SaveCommentModel,SaveCommentModelList} from '../models/post/comment';
+import { UserCommentListObject, CustomHomePageModel } from "@/models/post/usercomment";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home(props: { data: UserShoutOutListObject }) {
+export default function Home(props: { data: CustomHomePageModel }) {
+  console.log("customeHome");
   console.log(props);
   const router = useRouter();
   const [notLoggedInSession, SetNotLoggedInSession] = useState(true);
@@ -42,9 +46,9 @@ export default function Home(props: { data: UserShoutOutListObject }) {
       {/* <StartingPageContent /> */}
       <Banner {...banner} />
       {notLoggedInSession && <AuthForm />}
-      <MainPromo shoutoutList={props.data.shoutList} />
+      {/* <MainPromo shoutoutList={props.data.shoutList} /> */}
       <SectionCounter />
-      <UserCommentList data={props.allComments} />
+      {/* <UserCommentList data={props.allComments} /> */}
       <Testimonials />
       <BodyEnd />
     </>
@@ -52,17 +56,20 @@ export default function Home(props: { data: UserShoutOutListObject }) {
 }
 
 export const getServerSideProps: GetServerSideProps<{
-  data: UserShoutOutListObject;
+  data: CustomHomePageModel;
 }> = async (context) => {
-  const session = await getServerSession(context.req, context.res, authOptions);
-  const sessionData: SessionData = session;
+  
   var userList = await fetch("http://localhost:3000/api/user/usercomments", {
     method: "GET",
   });
-  var data: UserShoutOutListObject = await userList.json();
+  var userData: UserShoutOutListObject = await userList.json();
+
+  const res = await fetch('http://localhost:3000/api/post/getAllComments');
+  const commentData: UserCommentListObject = await res.json();
+ const data : CustomHomePageModel = [userData,commentData];
   return {
     props: {
-      data,
+      data
     },
   };
 };

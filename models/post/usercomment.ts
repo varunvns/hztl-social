@@ -1,3 +1,6 @@
+import { type } from "os";
+import { UserShoutOutList, UserShoutOutListObject } from "../shoutout/user";
+
 export interface IUserComment {
     email : string;
     id: string;
@@ -28,3 +31,5 @@ export class UserCommentListObject implements UserCommentList {
     this.userCommentList.push(userComment);
   }
 }
+
+export type CustomHomePageModel = [ UserShoutOutListObject,UserCommentListObject ];

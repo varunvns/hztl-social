@@ -9,7 +9,7 @@ import { getServerSession } from "next-auth/next";
 
 async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<UserCommentList>
+  res: NextApiResponse
 ) {
   if (req.method !== "GET") {
     return;
@@ -17,7 +17,7 @@ async function handler(
   const session = await getServerSession(req, res, authOptions);
   console.log(session);
   if (!session) {
-    res.status(401);
+    res.status(401).json('not in a session');
     return;
   }
   
