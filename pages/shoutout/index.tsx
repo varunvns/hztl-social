@@ -5,12 +5,14 @@ import ShoutOutUser from "@/components/ShoutOut/ShoutOutUser";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../api/auth/[...nextauth]";
 import { SessionData } from "@/models/oauth/signup";
+import Hero from "@/components/Hero/Hero";
+import { profilehero } from "@/models/marketing/profilehero";
 
 function ShoutOut(props: { data: UserShoutOutListObject }) {
   console.log(props);
   return (
     <Fragment>
-      <h1>Shout Out Detail Page</h1>
+      <Hero {...profilehero} title="Shout Out Detail Page" />
       <ShoutOutUser shoutoutList={props.data.shoutList}></ShoutOutUser>
     </Fragment>
   );

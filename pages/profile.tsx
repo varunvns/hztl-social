@@ -11,7 +11,7 @@ import { profilehero } from "@/models/marketing/profilehero";
 function ProfilePage(props: { data: SessionData }) {
   return (
     <>
-      <Hero {...profilehero} />
+      <Hero {...profilehero} title="Profile Page" />
       <UserProfile session={props.data} />
     </>
   );
