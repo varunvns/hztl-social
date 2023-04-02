@@ -1,52 +1,54 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { connectToDatabase } from "@/lib/db";
-import { 
+import { ObjectId } from 'mongodb';
+import {
   UserCommentList,
   UserCommentListObject,
 } from "@/models/post/usercomment";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { getServerSession } from "next-auth/next";
 
-async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  if (req.method !== "GET") {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method !== "POST") {
     return;
   }
-  const session = await getServerSession(req, res, authOptions);
-  console.log(session);
-  if (!session) {
-    res.status(401).json('not in a session');
-    return;
-  }
-  
-  const userEmail = session.user!.email;
+  var result = new UserCommentListObject([]);
+
+  const userEmail = req.body.email;
   const client = await connectToDatabase();
   const db = client.db();
 
   const commentCollection = db.collection("comments");
   const loggedInUser = await db
-  .collection("users")
-  .findOne({ email: userEmail });
+    .collection("users")
+    .findOne({ email: userEmail });
   let commentauthorid;
   if (loggedInUser) {
     commentauthorid = loggedInUser._id.toString();
   }
-  const commentResult = await commentCollection.find({commentauthorid:commentauthorid }).toArray();
+  console.log("Comment Author ID");
+  console.log(commentauthorid);
+  const commentResult = await commentCollection
+    .find({ commentauthorid: commentauthorid })
+    .toArray();
+  console.log(commentResult);
+  
 
-  const user = await db.collection("users").findOne({ email: userEmail });
-
-  var result = new UserCommentListObject([]);
-  commentResult.forEach(function (value) {
+  for (const value of commentResult) {
+    console.log("Testing6 commented user");
+    console.log(value.commentreceiverid);
+    var receiverObject = new ObjectId(value.commentreceiverid);
+    const commentedUser = await db.collection("users").findOne({ _id: receiverObject });
+    console.log("Testing commented user");
+    console.log(commentedUser)
     result.addUserComment({
-        email :userEmail!,       
-        id: value._id.toString(),
-        author_image: user!.imageUrl,
-        testimonial_author : userEmail!,
-        testimonial_text:value.comment      
-    })
-  })
+      email: commentedUser!.email,
+      id: value._id.toString(),
+      author_image: commentedUser!.imageurl,
+      testimonial_author: commentedUser!.fullname,
+      testimonial_text: value.comment,
+    });
+  }
 
   res.status(201).json(result);
   client.close();
