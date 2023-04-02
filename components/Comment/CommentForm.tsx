@@ -3,12 +3,15 @@ import { useState, useRef, useContext } from "react";
 import classes from "./CommentForm.module.css";
 import NotificationContext from "@/store/notification-context";
 
-async function createComment(comment: string) {
-  let commentreceiverid = 2;
-  let commentauthorid = 1;
+type CommentFormProps = {
+  commentReceiverID: string | string[] | undefined;
+};
+
+async function createComment(commentreceiverid: string, comment: string) {
+  console.log(commentreceiverid);
   const response = await fetch("/api/post/comment", {
     method: "POST",
-    body: JSON.stringify({ commentreceiverid, commentauthorid, comment }),
+    body: JSON.stringify({ commentreceiverid, comment }),
     headers: {
       "Content-Type": "application/json",
     },
@@ -22,9 +25,7 @@ async function createComment(comment: string) {
   return data;
 }
 
-const CommentForm: React.FC = () => {
-  // const commenterNameRef = useRef<HTMLInputElement>(null);
-  // const commenterEmailRef = useRef<HTMLInputElement>(null);
+const CommentForm: React.FC<CommentFormProps> = (props) => {
   const notificationContext = useContext(NotificationContext);
   const messageRef = useRef<HTMLTextAreaElement>(null);
   async function handleSubmit(event: React.FormEvent) {
@@ -36,7 +37,10 @@ const CommentForm: React.FC = () => {
         message: "Submitting your comment on HZTL Social...",
         status: "pending",
       });
-      const resp = await createComment(messageRef.current!.value);
+      const resp = await createComment(
+        props.commentReceiverID!.toString(),
+        messageRef.current!.value
+      );
       console.log(resp);
       notificationContext.showNotification({
         title: "Comment submitted Successfully.",

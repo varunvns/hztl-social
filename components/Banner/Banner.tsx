@@ -1,4 +1,6 @@
 import React from "react";
+import Link from "next/link";
+
 //import { banner } from "@/models/marketing/banner";
 type bannerprops = {
   title: string;
@@ -28,12 +30,12 @@ const Banner = (props: bannerprops) => {
               <h1 className="mb-4">{props.subtitle}</h1>
               <p className="caps">{props.description}</p>
               <p className="mb-0">
-                <a href={props.primarylink} className="btn btn-primary">
-                  {props.primarytext}
-                </a>
-                {/* <a href={props.secondarylink} className="btn btn-white">
-                  {props.secondarytext}
-                </a> */}
+                <Link legacyBehavior href={props.primarylink}>
+                  <a className="btn btn-primary">{props.primarytext}</a>
+                </Link>
+                {/* <Link legacyBehavior href={props.secondarylink}>
+                  <a className="btn btn-white">{props.secondarytext}</a>
+                </Link> */}
               </p>
             </div>
           </div>
