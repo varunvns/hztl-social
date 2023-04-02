@@ -3,6 +3,7 @@ import Head from "next/head";
 import MainNavigation from "@/components/MainNavigation/MainNavigation";
 import NotificationContext from "@/store/notification-context";
 import Notification from "../Notification/Notification";
+import BodyEnd from "../BodyEnd/BodyEnd";
 
 function Layout(props: any) {
   const notificationContext = useContext(NotificationContext);
@@ -23,15 +24,7 @@ function Layout(props: any) {
         <link
           rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-        />        
-        <link rel="stylesheet" href="../Theme/css/animate.css" />
-        <link rel="stylesheet" href="../Theme/css/owl.carousel.min.css" />
-        <link rel="stylesheet" href="../Theme/css/owl.theme.default.min.css" />
-        <link rel="stylesheet" href="../Theme/css/magnific-popup.css" />
-        <link rel="stylesheet" href="../Theme/css/bootstrap-datepicker.css" />
-        <link rel="stylesheet" href="../Theme/css/jquery.timepicker.css" />
-        <link rel="stylesheet" href="../Theme/css/flaticon.css" />
-        <link rel="stylesheet" href="../Theme/css/style.css" />
+        />
       </Head>
       <MainNavigation />
       <main>{props.children}</main>

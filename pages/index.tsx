@@ -9,6 +9,9 @@ import Testimonials from "@/components/Testimonials/Testimonials";
 import BodyEnd from "@/components/BodyEnd/BodyEnd";
 import MainPromo from "@/components/WelcomePromo/MainPromo";
 import Banner from "@/components/Banner/Banner";
+import AuthForm from "@/components/Auth/AuthForm";
+
+import { banner } from "@/models/marketing/banner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +19,8 @@ export default function Home() {
   return (
     <>
       {/* <StartingPageContent /> */}
-      <Banner />
+      <Banner {...banner} />
+      <AuthForm />
       <MainPromo />
       <SectionCounter />
       <Testimonials />

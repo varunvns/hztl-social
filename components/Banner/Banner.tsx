@@ -1,12 +1,23 @@
 import React from "react";
-import { banner } from "@/models/marketing/banner";
 import Link from "next/link";
-const Banner = () => {
+
+//import { banner } from "@/models/marketing/banner";
+type bannerprops = {
+  title: string;
+  subtitle: string;
+  description: string;
+  primarylink: string;
+  primarytext: string;
+  image: string;
+  secondarytext: string;
+  secondarylink: string;
+};
+const Banner = (props: bannerprops) => {
   return (
     <>
       <div
         className="hero-wrap js-fullheight"
-        style={{ backgroundImage: `url(${banner.bannerImage})` }}
+        style={{ backgroundImage: `url(${props.image})` }}
       >
         <div className="overlay"></div>
         <div className="container">
@@ -15,16 +26,16 @@ const Banner = () => {
             data-scrollax-parent="true"
           >
             <div className="col-md-7 ftco-animate">
-              <span className="subheading">{banner.bannerTitle}</span>
-              <h1 className="mb-4">{banner.bannerSubTitle}</h1>
-              <p className="caps">{banner.bannerDescription}</p>
+              <span className="subheading">{props.title}</span>
+              <h1 className="mb-4">{props.subtitle}</h1>
+              <p className="caps">{props.description}</p>
               <p className="mb-0">
-                <Link legacyBehavior href={banner.bannerPrimaryLink}>
-                  <a className="btn btn-primary">{banner.bannerPrimaryText}</a>
+                <Link legacyBehavior href={props.primarylink}>
+                  <a className="btn btn-primary">{props.primarytext}</a>
                 </Link>
-                <Link legacyBehavior href={banner.bannerSecondaryLink}>
-                  <a className="btn btn-white">{banner.bannerSecondaryText}</a>
-                </Link>
+                {/* <Link legacyBehavior href={props.secondarylink}>
+                  <a className="btn btn-white">{props.secondarytext}</a>
+                </Link> */}
               </p>
             </div>
           </div>
