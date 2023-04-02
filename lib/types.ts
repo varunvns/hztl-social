@@ -1,5 +1,49 @@
 import { Interface } from "readline";
 
+export interface ISocialIcon {
+  id: number;
+  iconClass: string;
+  iconLink: string;
+}
+
+export interface IFooterLink {
+  id: number;
+  linkText: string;
+  linkLocation: string;
+}
+
+export interface IFooterColumn {
+  id: number;
+  columnText: string;
+  links: Array<IFooterLink>;
+}
+
+export interface IFooter {
+  aboutTitle: string;
+  aboutText: string;
+  aboutQuestionsText: string;
+  aboutAddress: string;
+  aboutPhone: string;
+  aboutEmail: string;
+  aboutCopyright: string;
+  socialIcons: Array<ISocialIcon>;
+  footercolumns: Array<IFooterColumn>;
+}
+
+export class Footer implements IFooter {
+  constructor(
+    public aboutTitle: string,
+    public aboutText: string,
+    public aboutQuestionsText: string,
+    public aboutAddress: string,
+    public aboutPhone: string,
+    public aboutEmail: string,
+    public aboutCopyright: string,
+    public socialIcons: Array<ISocialIcon>,
+    public footercolumns: Array<IFooterColumn>
+  ) {}
+}
+
 export interface ICounter {
   id: number;
   icon: string;

@@ -21,9 +21,9 @@ const Banner = () => {
                 <a href={banner.bannerPrimaryLink} className="btn btn-primary">
                   {banner.bannerPrimaryText}
                 </a>
-                <a href={banner.bannerSecondaryLink} className="btn btn-white">
+                {/* <a href={banner.bannerSecondaryLink} className="btn btn-white">
                   {banner.bannerSecondaryText}
-                </a>
+                </a> */}
               </p>
             </div>
           </div>

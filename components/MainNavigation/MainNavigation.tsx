@@ -20,7 +20,7 @@ const MainNavigation: React.FC = () => {
       id="ftco-navbar"
     >
       <div className="container">
-        <a className="navbar-brand" href="index.html">
+        <a className="navbar-brand" href="/">
           <span>Horizontal</span> Social
         </a>
         <button
