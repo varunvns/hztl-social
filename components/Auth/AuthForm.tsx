@@ -75,28 +75,59 @@ const AuthForm: React.FC = () => {
   }
 
   return (
-    <section className={classes.auth}>
-      <h1>{isLogin ? "Login" : "Sign Up"}</h1>
-      <form onSubmit={submitHandler}>
-        <div className={classes.control}>
-          <label htmlFor="email">Your Email</label>
-          <input type="email" id="email" required ref={emailRef} />
+    <section className="ftco-section ftco-no-pb ftco-no-pt">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-7"></div>
+          <div className="col-md-5">
+            <div className="login-wrap p-4 p-md-5">
+              <h1>
+                {isLogin ? "Login to HZTL Social" : "Register to HZTL Social"}
+              </h1>
+              <form className="signup-form" onSubmit={submitHandler}>
+                <div className="form-group">
+                  <label className="label" htmlFor="email">
+                    Email Address
+                  </label>
+                  <input
+                    className="form-control"
+                    type="email"
+                    id="email"
+                    placeholder="johndoe@gmail.com"
+                    required
+                    ref={emailRef}
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="label" htmlFor="password">
+                    Password
+                  </label>
+                  <input
+                    className="form-control"
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                    required
+                    ref={passwordRef}
+                  />
+                </div>
+                <div className={classes.actions}>
+                  <button>{isLogin ? "Sign In" : "Register Now"}</button>
+                  <button
+                    type="button"
+                    className={classes.toggle}
+                    onClick={switchAuthModeHandler}
+                  >
+                    {isLogin
+                      ? "Register to Hztl Social"
+                      : "Already have an account? Sign In"}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-        <div className={classes.control}>
-          <label htmlFor="password">Your Password</label>
-          <input type="password" id="password" required ref={passwordRef} />
-        </div>
-        <div className={classes.actions}>
-          <button>{isLogin ? "Login" : "Create Account"}</button>
-          <button
-            type="button"
-            className={classes.toggle}
-            onClick={switchAuthModeHandler}
-          >
-            {isLogin ? "Create new account" : "Login with existing account"}
-          </button>
-        </div>
-      </form>
+      </div>
     </section>
   );
 };

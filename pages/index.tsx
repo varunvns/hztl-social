@@ -9,11 +9,9 @@ import Testimonials from "@/components/Testimonials/Testimonials";
 import BodyEnd from "@/components/BodyEnd/BodyEnd";
 import MainPromo from "@/components/WelcomePromo/MainPromo";
 import Banner from "@/components/Banner/Banner";
-import { getServerSession } from "next-auth/next";
-import { UserShoutOutListObject } from "@/models/shoutout/user";
-import { GetServerSideProps } from "next";
-import { authOptions } from "./api/auth/[...nextauth]";
-import { SessionData } from "@/models/oauth/signup";
+import AuthForm from "@/components/Auth/AuthForm";
+
+import { banner } from "@/models/marketing/banner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,8 +20,9 @@ export default function Home(props: { data: UserShoutOutListObject }) {
   return (
     <>
       {/* <StartingPageContent /> */}
-      <Banner />
-      <MainPromo shoutoutList={props.data.shoutList} />
+      <Banner {...banner} />
+      <AuthForm />
+      <MainPromo />
       <SectionCounter />
       <Testimonials />
       <BodyEnd />
