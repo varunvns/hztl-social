@@ -55,9 +55,12 @@ export const getServerSideProps: GetServerSideProps<{
 }> = async (context) => {
   const session = await getServerSession(context.req, context.res, authOptions);
   const sessionData: SessionData = session;
-  var userList = await fetch("http://localhost:3000/api/user/usercomments", {
-    method: "GET",
-  });
+  var userList = await fetch(
+    "https://hztl-social-varunvns.vercel.app/api/user/usercomments",
+    {
+      method: "GET",
+    }
+  );
   var data: UserShoutOutListObject = await userList.json();
   return {
     props: {

@@ -25,9 +25,12 @@ export const getServerSideProps: GetServerSideProps<{
   const sessionData: SessionData = session;
   console.log("Chira");
   console.log(sessionData);
-  var userList = await fetch("http://localhost:3000/api/shoutout/fetchUser", {
-    method: "GET",
-  });
+  var userList = await fetch(
+    "https://hztl-social-varunvns.vercel.app/api/shoutout/fetchUser",
+    {
+      method: "GET",
+    }
+  );
   var data: UserShoutOutListObject = await userList.json();
   data.shoutList = data.shoutList.filter(
     (item) => item.email !== sessionData?.user?.email
