@@ -19,10 +19,7 @@ const ShoutOutUserCard: React.FC<ShoutOutUserCardProps> = (props) => {
       ></div>
 
       <span className={classes.cardtext}>{props.item.email}</span>
-      <button
-        className={`${classes.shoutoutcta} btn btn-primary`}
-        onClick={onClickhandler}
-      >
+      <button className={`${classes.shoutoutcta}`} onClick={onClickhandler}>
         Give ShoutOut
       </button>
     </div>

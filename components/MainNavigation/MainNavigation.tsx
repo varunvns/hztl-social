@@ -1,5 +1,4 @@
 import Link from "next/link";
-
 import classes from "./MainNavigation.module.css";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -37,13 +36,24 @@ const MainNavigation: React.FC = () => {
         <div className="collapse navbar-collapse" id="ftco-nav">
           <ul className="navbar-nav ml-auto">
             {session && (
-              <li className="nav-item">
-                <Link href="/profile">Profile</Link>
-              </li>
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" href="/profile">
+                    Profile
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" href="/shoutout">
+                    Shout out
+                  </Link>
+                </li>
+              </>
             )}
             {session && (
               <li className="nav-item">
-                <button onClick={logoutHandler}>Logout</button>
+                <button style={{ margin: "25px 20px" }} onClick={logoutHandler}>
+                  Logout
+                </button>
               </li>
             )}
           </ul>

@@ -62,10 +62,9 @@ const CommentForm: React.FC<CommentFormProps> = (props) => {
   return (
     <>
       <section className={classes.commentform}>
-        <h2>Add a Comment</h2>
         <form className={classes.forms} onSubmit={handleSubmit}>
           <div className={classes.inputfield}>
-            <label htmlFor="message">Your Message</label>
+            <label htmlFor="message">Your Shoutout message</label>
             <textarea
               rows={10}
               cols={50}
