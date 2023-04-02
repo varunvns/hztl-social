@@ -2,6 +2,7 @@ export class UserShoutOut {
   email: string = "";
   id: string = "";
   comment: number = 0;
+  imageurl: string = ""
 }
 
 export interface UserShoutOutList {

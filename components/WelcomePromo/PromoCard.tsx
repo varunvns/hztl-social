@@ -13,10 +13,13 @@ const PromoCard = ({ maintitle, maindescription, mainlink, items }: IPromo) => {
       <div className="row justify-content-center">
         {items.map((promocard: UserShoutOut) => (
           <div key={promocard.id} className="col-md-3 col-lg-2">
-            <a className="course-category img d-flex align-items-center justify-content-center">
+            <a
+              className="course-category img d-flex align-items-center justify-content-center"
+              style={{ backgroundImage: `url(${promocard.imageurl})` }}
+            >
               <div className="text w-100 text-center">
                 <h3>{promocard.email}</h3>
-                <span>{promocard.comment}</span>
+                <span>Total shoutouts:{promocard.comment}</span>
               </div>
             </a>
           </div>

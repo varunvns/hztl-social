@@ -26,13 +26,15 @@ async function handler(
   for (const value of userCollection) {
     var commentcount = await db
       .collection("comments")
-      .find({ commentauthorid: value._id.toString() })
+      .find({ commentreceiverid: value._id.toString() })
       .count();
-
+    console.log("Comment Count");
+    console.log(commentcount);
     result.addShoutOut({
       id: value._id.toString(),
       email: value.email,
       comment: commentcount,
+      imageurl: value.imageurl
     });
   }
 

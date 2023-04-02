@@ -42,9 +42,6 @@ export const getServerSideProps: GetServerSideProps<{
     method: "GET",
   });
   var data: UserShoutOutListObject = await userList.json();
-  data.shoutList = data.shoutList.filter(
-    (item) => item.email !== sessionData?.user?.email
-  );
   return {
     props: {
       data,
