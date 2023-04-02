@@ -1,4 +1,49 @@
 import { Interface } from "readline";
+import { UserShoutOut } from "@/models/shoutout/user";
+
+export interface ISocialIcon {
+  id: number;
+  iconClass: string;
+  iconLink: string;
+}
+
+export interface IFooterLink {
+  id: number;
+  linkText: string;
+  linkLocation: string;
+}
+
+export interface IFooterColumn {
+  id: number;
+  columnText: string;
+  links: Array<IFooterLink>;
+}
+
+export interface IFooter {
+  aboutTitle: string;
+  aboutText: string;
+  aboutQuestionsText: string;
+  aboutAddress: string;
+  aboutPhone: string;
+  aboutEmail: string;
+  aboutCopyright: string;
+  socialIcons: Array<ISocialIcon>;
+  footercolumns: Array<IFooterColumn>;
+}
+
+export class Footer implements IFooter {
+  constructor(
+    public aboutTitle: string,
+    public aboutText: string,
+    public aboutQuestionsText: string,
+    public aboutAddress: string,
+    public aboutPhone: string,
+    public aboutEmail: string,
+    public aboutCopyright: string,
+    public socialIcons: Array<ISocialIcon>,
+    public footercolumns: Array<IFooterColumn>
+  ) {}
+}
 
 export interface ICounter {
   id: number;
@@ -53,7 +98,7 @@ export interface IPromo {
   maindescription: string;
   mainlink: string;
   mainlinktitle: string;
-  items: Array<IPromoCard>;
+  items: Array<UserShoutOut>;
 }
 
 export class Promo implements IPromo {
@@ -62,31 +107,31 @@ export class Promo implements IPromo {
     public maindescription: string,
     public mainlink: string,
     public mainlinktitle: string,
-    public items: Array<IPromoCard>
+    public items: Array<UserShoutOut>
   ) {}
 }
 
 export interface IBanner {
-  bannerTitle: string;
-  bannerSubTitle: string;
-  bannerImage: string;
-  bannerDescription: string;
-  bannerPrimaryText: string;
-  bannerPrimaryLink: string;
-  bannerSecondaryText: string;
-  bannerSecondaryLink: string;
+  title: string;
+  subtitle: string;
+  image: string;
+  description: string;
+  primarytext: string;
+  primarylink: string;
+  secondarytext: string;
+  secondarylink: string;
 }
 
 export class Banner implements IBanner {
   constructor(
-    public bannerTitle: string,
-    public bannerSubTitle: string,
-    public bannerImage: string,
-    public bannerDescription: string,
-    public bannerPrimaryText: string,
-    public bannerPrimaryLink: string,
-    public bannerSecondaryText: string,
-    public bannerSecondaryLink: string
+    public title: string,
+    public subtitle: string,
+    public image: string,
+    public description: string,
+    public primarytext: string,
+    public primarylink: string,
+    public secondarytext: string,
+    public secondarylink: string
   ) {}
 }
 

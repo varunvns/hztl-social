@@ -9,48 +9,40 @@ import Testimonials from "@/components/Testimonials/Testimonials";
 import BodyEnd from "@/components/BodyEnd/BodyEnd";
 import MainPromo from "@/components/WelcomePromo/MainPromo";
 import Banner from "@/components/Banner/Banner";
-import UserCommentListComp from "@/components/Card/UserCommentListComp";
-import { GetServerSideProps ,InferGetStaticPropsType } from 'next';
-import {SaveCommentModel,SaveCommentModelList} from '../models/post/comment';
-import { UserCommentListObject } from "@/models/post/usercomment";
+import AuthForm from "@/components/Auth/AuthForm";
+
+import { banner } from "@/models/marketing/banner";
+
+import { getServerSession } from "next-auth/next";
+import { UserShoutOutListObject } from "@/models/shoutout/user";
+import { GetServerSideProps } from "next";
+import { authOptions } from "./api/auth/[...nextauth]";
+import { SessionData } from "@/models/oauth/signup";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { getSession } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-
-function UserCommentList(props: { data: UserCommentListObject }) {
+export default function Home(props: { data: UserShoutOutListObject }) {
   console.log(props);
-  return (
-    <>
-      <h1>User Comments from home page</h1>
-      <UserCommentListComp userCommentList={props.data.userCommentList}></UserCommentListComp>
-    </>
-  );
-}
-
-export const getServerSideProps: GetServerSideProps<{ 
-  allComments: UserCommentListObject ;
-}> = async (context) => {
-  console.log("GetStaticProps");
-  const res = await fetch('http://localhost:3000/api/post/getAllComments');
-  console.log(res);
-  const allComments: UserCommentListObject = await res.json();
-  console.log(allComments.userCommentList);
-
- 
-  return {
-    props: {
-      allComments,
-    },
-  }
-};
-
-
-export default function Home(props :{allComments: UserCommentListObject}) {
+  const router = useRouter();
+  const [notLoggedInSession, SetNotLoggedInSession] = useState(true);
+  useEffect(() => {
+    getSession().then((session) => {
+      if (session) {
+        SetNotLoggedInSession(false);
+      } else {
+        SetNotLoggedInSession(true);
+      }
+    });
+  }, []);
   return (
     <>
       {/* <StartingPageContent /> */}
-      <Banner />
-      <MainPromo />
+      <Banner {...banner} />
+      {notLoggedInSession && <AuthForm />}
+      <MainPromo shoutoutList={props.data.shoutList} />
       <SectionCounter />
       <UserCommentList data={props.allComments} />
       <Testimonials />
@@ -58,3 +50,19 @@ export default function Home(props :{allComments: UserCommentListObject}) {
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps<{
+  data: UserShoutOutListObject;
+}> = async (context) => {
+  const session = await getServerSession(context.req, context.res, authOptions);
+  const sessionData: SessionData = session;
+  var userList = await fetch("http://localhost:3000/api/user/usercomments", {
+    method: "GET",
+  });
+  var data: UserShoutOutListObject = await userList.json();
+  return {
+    props: {
+      data,
+    },
+  };
+};

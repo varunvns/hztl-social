@@ -20,9 +20,9 @@ const MainNavigation: React.FC = () => {
       id="ftco-navbar"
     >
       <div className="container">
-        <a className="navbar-brand" href="index.html">
+        <Link className="navbar-brand" href="/">
           <span>Horizontal</span> Social
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -36,11 +36,6 @@ const MainNavigation: React.FC = () => {
         </button>
         <div className="collapse navbar-collapse" id="ftco-nav">
           <ul className="navbar-nav ml-auto">
-            {!session && (
-              <li className="nav-item">
-                <Link href="/auth">Login</Link>
-              </li>
-            )}
             {session && (
               <li className="nav-item">
                 <Link href="/profile">Profile</Link>

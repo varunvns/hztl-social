@@ -20,14 +20,16 @@ async function handler(
   const userCollection = db.collection("users");
   const userResult = await userCollection.find({}).toArray();
 
-  
   var result = new UserShoutOutListObject([]);
   userResult.forEach(function (value) {
     result.addShoutOut({
-        id: value._id.toString(),
-        email: value.email
-    })
-  })
+      id: value._id.toString(),
+      email: value.email,
+      comment: 0,
+      imageurl: value.imageurl,
+      name: value.fullname
+    });
+  });
 
   res.status(201).json(result);
   client.close();

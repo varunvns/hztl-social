@@ -11,7 +11,7 @@ async function handler(
     return;
   }
   const data = req.body;
-  const { email, password } = data;
+  const { email, password,fullname } = data;
   if (
     !email ||
     !email.includes("@") ||
@@ -40,6 +40,7 @@ async function handler(
   const result = await db.collection("users").insertOne({
     email: email,
     password: hashPassword,
+    fullname: fullname
   });
   console.log(result);
   res.status(201).json({ message: "User Created Successfully" });
